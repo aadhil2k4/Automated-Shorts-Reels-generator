@@ -1,34 +1,18 @@
-import os
-import requests
+from google_images_search import GoogleImagesSearch
 from dotenv import load_dotenv
-from trends import getMostTrending
+import os
 
 load_dotenv()
 
 def fetch_image(query):
-    UNSPLASH_API = os.getenv("UNSPLASH_API")
-    url = "https://api.unsplash.com/search/photos"
-    params = {
-        "query": query,
-        "client_id": UNSPLASH_API,
-        "per-page": 1
+    path = './trending_img.jpg'
+    gis = GoogleImagesSearch(os.getenv('GCS_KEY'), os.getenv('GCS_CX'))
+    search_params = {
+        'q': query,
+        'num': 1,
+        'fileType': 'jpg|png',
+        'safe': 'medium',
+        'imgType': 'photo',
+        'imgSize': 'medium'
     }
-    response = requests.get(url, params=params)
-    data = response.json()
-
-    if data['results']:
-        image_url = data['results'][0]['urls']['regular']
-        image_response = requests.get(image_url)
-
-        image_path = './trending_image.jpg'
-        with open(image_path, 'wb') as file:
-            file.write(image_response.content)
-        print(f"Image downloaded at: {image_path}")
-        return image_path
-    else:
-        print("No images found for the trending topic.")
-        return None
-    
-if __name__ == "__main__":
-    most_trending = getMostTrending()
-    fetch_image(most_trending)
+    gis.search(search_params=search_params, path_to_dir='./', custom_image_name='trending_img')
