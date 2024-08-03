@@ -7,7 +7,8 @@ from PIL import Image
 load_dotenv()
 
 def generate_audio(text, filename="narration.mp3"):
-    tts = gTTS(text)
+    tld = 'com.au'
+    tts = gTTS(text, lang='en', tld=tld)
     tts.save(filename)
     return filename
 
