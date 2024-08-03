@@ -14,6 +14,11 @@ def generate_audio(text, filename="narration.mp3"):
     return filename
 
 def create_clip(image_path, text, output_path="short.mp4"):
+    default_img_path = "default_img.jpg"
+
+    if not image_path or not os.path.exists(image_path):
+        image_path = default_img_path
+
     audio_path = generate_audio(text)
     image_clip = ImageClip(image_path)
     audio_clip = AudioFileClip(audio_path)

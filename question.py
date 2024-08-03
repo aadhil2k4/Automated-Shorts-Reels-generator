@@ -2,10 +2,11 @@ import os
 import google.generativeai as genai
 from trends import getMostTrending
 from dotenv import load_dotenv
+import asyncio
 
 load_dotenv()
 
-def generate_question():
+async def generate_question():
     most_trending = getMostTrending()
 
     genai.configure(api_key=os.getenv('GEMINI_KEY'))
