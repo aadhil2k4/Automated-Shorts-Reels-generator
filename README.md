@@ -1,7 +1,12 @@
-An Automated Youtube channel that posts "shorts" form of content daily to youtube.
-Action Plan:
-1. Fetch a real time trending topic in India.
-2. generate script using gemini
-3. use google image search api to download 4 images
-4. create a video using moviepy and text to voice api
-5. upload to youtube using selenium.
+A python program that creates Youtube Shorts/Reels automatically
+
+Functionality:
+1. Fetch most trending realtime topic from google trends.
+2. Fetch image from google using GIS.
+3. Resize the image to fit the dimensions. 
+4. generate voice-over using google text to speech
+5. Create video using Moviepy
+
+Future Plans:
+1. Automatically update to youtube/Insta using selenium
+2. Add subtitles, multiple background images, background music to the video
